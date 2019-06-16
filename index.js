@@ -51,7 +51,14 @@ class Runtime {
         if (node.async) {
           prefix = `await `
         }
-        this.code += `_s${id} = ${prefix}${node.package}.${node.func}(${resStr});
+        let func = node.package
+        if (node.package.indexOf('/')>0) {
+          func = node.package.split('/').join('_')
+        }
+        if (node.func) {
+          func += `.${node.func}`
+        }
+        this.code += `_s${id} = ${prefix}${func}(${resStr});
         `
       } else if (node.type=='op') {
         this.code += op[node.package](id, node.func, resStr)
@@ -104,7 +111,8 @@ class Runtime {
       return node.package
     }))
     _.forEach(nodePackage, pkg=>{
-      this.code = `const ${pkg} = require('${pkg}');
+      let name = pkg.split('/').join('_')
+      this.code = `const ${name} = require('${pkg}');
       `+this.code
     })
     //声明变量

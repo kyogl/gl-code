@@ -13,9 +13,7 @@ const json = {
         {
             "id":"2",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false,
+            "package":"lodash/add",
             "data":[
                 {
                     "index":1,
@@ -26,9 +24,7 @@ const json = {
         {
             "id":"3",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false,
+            "package":"lodash/add",
             "data":[
                 {
                     "index":1,
@@ -39,9 +35,7 @@ const json = {
         {
             "id":"4",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false,
+            "package":"lodash/add",
             "data":[
                 {
                     "index":1,
@@ -52,9 +46,7 @@ const json = {
         {
             "id":"5",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false,
+            "package":"lodash/add",
             "data":[
                 {
                     "index":1,
@@ -65,9 +57,7 @@ const json = {
         {
             "id":"6",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false
+            "package":"lodash/add"
         },
         {
             "id":"7",
@@ -90,9 +80,7 @@ const json = {
         {
             "id":"10",
             "type":"func",
-            "package":"lodash",
-            "func":"add",
-            "async":false,
+            "package":"lodash/add",
             "parent":"8",
             "data":[
                 {
@@ -109,8 +97,7 @@ const json = {
         {
             "id":"12",
             "type":"func",
-            "package": "lodash",
-            "func": "map"
+            "package": "lodash/map"
         },
         {
             "id":"13",
