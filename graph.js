@@ -77,7 +77,44 @@ const json = {
         },
         {
             "id":"8",
-            "type":"echo"
+            "type":"op",
+            "package": "function",
+            "func": "new",
+            "start": "9"
+        },
+        {
+            "id": "9",
+            "type": "start",
+            "parent":"8"
+        },
+        {
+            "id":"10",
+            "type":"func",
+            "package":"lodash",
+            "func":"add",
+            "async":false,
+            "parent":"8",
+            "data":[
+                {
+                    "index":1,
+                    "value":2
+                }
+            ]
+        },
+        {
+            "id":"11",
+            "parent": "8",
+            "type":"return"
+        },
+        {
+            "id":"12",
+            "type":"func",
+            "package": "lodash",
+            "func": "map"
+        },
+        {
+            "id":"13",
+            "type":"return"
         }
     ],
     "links":[
@@ -117,8 +154,28 @@ const json = {
             "index":0
         },
         {
+            "source":"1",
+            "target":"8",
+        },
+        {
             "source":"7",
-            "target":"8"
+            "target":"12",
+        },
+        {
+            "source": "8",
+            "target": "12",
+        },
+        {
+            "source": "9",
+            "target": "10",
+        },
+        {
+            "source": "10",
+            "target": "11",
+        },
+        {
+            "source": "12",
+            "target": "13",
         }
     ]
 }

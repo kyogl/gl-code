@@ -29,7 +29,7 @@ class Runtime {
     if (node.type=='start') {
       this.code += `_s${id} = data
       `
-    } else if (node.type=='echo') {
+    } else if (node.type=='return') {
       let link = this.getLink(node.targetLinks[0])
       let parent = this.getNode(link.source)
       this.code += `return _s${parent.id}
@@ -55,6 +55,13 @@ class Runtime {
         `
       } else if (node.type=='op') {
         this.code += op[node.package](id, node.func, resStr)
+        if (node.package=='function') {
+          if (node.func=='new') {
+            this.runNode(node.start)
+            this.code += `};
+            `
+          }
+        }
       }
     }
   }

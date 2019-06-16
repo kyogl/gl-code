@@ -1,3 +1,4 @@
 module.exports = {
-  "array": require('./array')
+  "array": require('./array'),
+  "function": require('./function')
 }
