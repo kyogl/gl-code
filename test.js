@@ -1,21 +1,13 @@
-const _ = require('lodash');
-    const add = function (a, b) {
-      return new Promise(function(solve, reject) {
-        setTimeout(()=>{
-          let sult = _.add(a, b);
-          solve(sult);
-        }, 10);
-      });
-    };
-    const func = async function (data) {
-    let s1,q1,s2,q2,s3,q3,s4,q4,s5,q5,s6,q6,s7,q7,s8,q8;
-    s1 = data
-      s2 = await add(s1,3);
-      s3 = await add(s2,4);
-      s4 = await add(s2,4);
-      s6 = await add(s4,1);
-      s5 = await add(s3,6);
-      s7 = await add(s5,6);
-      return s7
+const lodash = require('lodash');
+      const func = async function (data) {
+    let _s1,_s2,_s3,_s4,_s5,_s6,_s7,_s8;
+    _s1 = data
+      _s2 = lodash.add(_s1,2);
+        _s3 = lodash.add(_s2,2);
+        _s4 = lodash.add(_s2,2);
+        _s5 = lodash.add(_s4,2);
+        _s6 = lodash.add(_s3,_s5);
+        _s7 = new Array(_s6);
+      return _s7
       };
     module.exports = func
