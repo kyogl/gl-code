@@ -129,10 +129,28 @@ const json = {
         },
         {
             "id":"16",
-            "type":"return"
+            "type":"op",
+            "package": "array",
+            "func": "new"
         },
         {
             "id":"17",
+            "type":"op",
+            "package": "array",
+            "func": "push",
+            "data":[
+                {
+                    "index":1,
+                    "key": "_s6"
+                }
+            ]
+        },
+        {
+            "id":"18",
+            "type":"return"
+        },
+        {
+            "id":"19",
             "type":"return"
         }
     ],
@@ -206,7 +224,7 @@ const json = {
             "source": "13",
             "target": "14",
             "condition": true,
-            "filter": "0.0",
+            "filter": "0.length",
             "index": 0
         },
         {
@@ -218,11 +236,21 @@ const json = {
         {
             "source": "14",
             "target": "16",
+            "index": -1
+        },
+        {
+            "source": "16",
+            "target": "17",
+            "index": 0
+        },
+        {
+            "source": "17",
+            "target": "18",
             "index": 0
         },
         {
             "source": "15",
-            "target": "17",
+            "target": "19",
             "index": 0
         }
     ]

@@ -42,6 +42,7 @@ class Runtime {
         return log.index<0
       })
       this.log[id] = _.orderBy(this.log[id], ['index'], ['asc'])
+      console.log(this.log[id])
       let res = _.map(this.log[id], log=>{
         if (log.key) {
           return log.key
@@ -101,7 +102,8 @@ class Runtime {
         this.log[target] = []
       }
       let log = {
-        key: `_s${link.source}`
+        key: `_s${link.source}`,
+        index: link.index
       }
       if (!_.gte(link.index,0)) {
         log.index = -1
@@ -111,7 +113,7 @@ class Runtime {
           if (n*1>=0) {
             return `[${n*1}]`
           } else {
-            return `${n}`
+            return `.${n}`
           }
         })
         log.key += filters.join('')
