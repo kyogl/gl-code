@@ -68,16 +68,29 @@ class Runtime {
             this.code += `};
             `
           }
+        } else if (node.package=='condition') {
+          this.runNext(node.id, true)
+          this.code += `} else {
+          `
+          this.runNext(node.id, false)
+          this.code += `};
+          `
         }
       }
     }
   }
-  runNext (id) {
+  runNext (id, condition) {
     let node = this.getNode(id)
     if (node.sourceLinks.length==0) {
       return
     }
     let sourceLinks = node.sourceLinks
+    if (condition===true || condition===false) {
+      sourceLinks = _.filter(node.sourceLinks, linkId=>{
+        let link = this.getLink(linkId)
+        return link.condition===condition
+      })
+    }
     _.forEach(sourceLinks, linkId=>{
       let link = this.getLink(linkId)
       let target = link.target
@@ -99,6 +112,9 @@ class Runtime {
     if (!this.tryRun[id]) {
       this.tryRun[id] = _.after(node.targetLinks.length, ()=>{
         this.buildNode(id)
+        if (node.type=='op' && node.package=='condition') {
+          return
+        }
         this.runNext(id)
       })
     }

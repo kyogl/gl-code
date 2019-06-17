@@ -50,7 +50,7 @@ const json = {
             "data":[
                 {
                     "index":1,
-                    "value":2
+                    "value":20
                 }
             ]
         },
@@ -85,7 +85,7 @@ const json = {
             "data":[
                 {
                     "index":1,
-                    "value":2
+                    "key": "_s6"
                 }
             ]
         },
@@ -101,6 +101,38 @@ const json = {
         },
         {
             "id":"13",
+            "type":"op",
+            "package": "condition",
+            "func": "all"
+        },
+        {
+            "id":"14",
+            "type":"func",
+            "package":"lodash/add",
+            "data":[
+                {
+                    "index":1,
+                    "key": "_s6"
+                }
+            ]
+        },
+        {
+            "id":"15",
+            "type":"func",
+            "package":"lodash/add",
+            "data":[
+                {
+                    "index":1,
+                    "key": "_s6"
+                }
+            ]
+        },
+        {
+            "id":"16",
+            "type":"return"
+        },
+        {
+            "id":"17",
             "type":"return"
         }
     ],
@@ -143,26 +175,49 @@ const json = {
         {
             "source":"1",
             "target":"8",
+            "index":0
         },
         {
             "source":"7",
             "target":"12",
+            "index":0
         },
         {
             "source": "8",
             "target": "12",
+            "index":0
         },
         {
             "source": "9",
             "target": "10",
+            "index":0
         },
         {
             "source": "10",
             "target": "11",
+            "index":0
         },
         {
             "source": "12",
-            "target": "13",
+            "target": "13"
+        },
+        {
+            "source": "13",
+            "target": "14",
+            "condition": true
+        },
+        {
+            "source": "13",
+            "target": "15",
+            "condition": false
+        },
+        {
+            "source": "14",
+            "target": "16"
+        },
+        {
+            "source": "15",
+            "target": "17"
         }
     ]
 }
