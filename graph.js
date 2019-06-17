@@ -199,13 +199,15 @@ const json = {
         },
         {
             "source": "12",
-            "target": "13"
+            "target": "13",
+            "index": 0
         },
         {
             "source": "13",
             "target": "14",
             "condition": true,
-            "index": -1
+            "filter": "0.0",
+            "index": 0
         },
         {
             "source": "13",
@@ -215,11 +217,13 @@ const json = {
         },
         {
             "source": "14",
-            "target": "16"
+            "target": "16",
+            "index": 0
         },
         {
             "source": "15",
-            "target": "17"
+            "target": "17",
+            "index": 0
         }
     ]
 }

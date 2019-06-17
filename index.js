@@ -100,10 +100,23 @@ class Runtime {
       if (!_.isArray(this.log[target])) {
         this.log[target] = []
       }
-      this.log[target].push({
-        index: link.index,
+      let log = {
         key: `_s${link.source}`
-      })
+      }
+      if (!_.gte(link.index,0)) {
+        log.index = -1
+      }
+      if (link.filter) {
+        let filters = _.map(link.filter.split('.'), n=>{
+          if (n*1>=0) {
+            return `[${n*1}]`
+          } else {
+            return `${n}`
+          }
+        })
+        log.key += filters.join('')
+      }
+      this.log[target].push(log)
       this.runNode(target)
     })
   }
