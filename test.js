@@ -15,16 +15,12 @@ const lodash_map = require('lodash/map');
         return _s10
       };
             _s12 = lodash_map(_s7,_s8);
-        if (_s12){
-    _s13 = true;
-  } else {
-    _s13 = false;
-  };
-  if (_s13) {
-  _s14 = lodash_add(_s6,_s13);
+        _s13 = [_s12]
+  if (_s12){
+  _s14 = lodash_add(_s6);
         return _s14
       } else {
-          _s15 = lodash_add(_s6,_s13);
+          _s15 = lodash_add(_s6);
         return _s15
       };
           };

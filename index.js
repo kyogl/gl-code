@@ -38,6 +38,9 @@ class Runtime {
       if (node.data) {
         this.log[id] = _.concat(this.log[id], node.data)
       }
+      _.remove(this.log[id], log=>{
+        return log.index<0
+      })
       this.log[id] = _.orderBy(this.log[id], ['index'], ['asc'])
       let res = _.map(this.log[id], log=>{
         if (log.key) {

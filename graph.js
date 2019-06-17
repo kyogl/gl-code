@@ -204,12 +204,14 @@ const json = {
         {
             "source": "13",
             "target": "14",
-            "condition": true
+            "condition": true,
+            "index": -1
         },
         {
             "source": "13",
             "target": "15",
-            "condition": false
+            "condition": false,
+            "index": -1
         },
         {
             "source": "14",
