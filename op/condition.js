@@ -4,7 +4,7 @@ module.exports = function (id, func, resStr) {
     s = '||'
   }
   resStr = resStr.split(',').join(s)
-  return `_s${id} = [${resStr}]
-  if (${resStr}){
+  return `if (${resStr}){
+    _s${id} = true;
   `
 }

@@ -80,6 +80,7 @@ class Runtime {
         } else if (node.package=='condition') {
           this.runNext(node.id, true)
           this.code += `} else {
+            _s${node.id} = false;
           `
           this.runNext(node.id, false)
           this.code += `};

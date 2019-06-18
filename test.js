@@ -16,8 +16,8 @@ const lodash_map = require('lodash/map');
           return _s11;
         };
             _s12 = lodash_map(_s7,_s8);
-        _s13 = [_s12]
-  if (_s12){
+        if (_s12){
+    _s13 = true;
   _s14 = lodash_add(_s13[0].length,_s6);
         _s16 = new Array();
       _s16.push(_s6);
@@ -26,6 +26,7 @@ const lodash_map = require('lodash/map');
       _s19 = _s18;
           return _s19;
         } else {
+            _s13 = false;
           _s15 = lodash_add(_s6);
         };
           _s20 = [_s15,_s1];
