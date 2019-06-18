@@ -37,14 +37,30 @@ class Runtime {
         return log.index<0
       })
       this.log[id] = _.orderBy(this.log[id], ['index'], ['asc'])
-      console.log(this.log[id])
-      let res = _.map(this.log[id], log=>{
-        if (log.key) {
-          return log.key
-        }
-        return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
-      })
-      let resStr = res.join(',')
+      // console.log(this.log[id])
+      let res, resStr
+      if (node.type=='op' && node.package=='object') {
+        resStr = _.map(this.log[id], log=>{
+          let value
+          if (log.key) {
+            value = log.key
+          } else {
+            value = _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
+          }
+          return {
+            key: log.index,
+            value
+          }
+        })
+      } else {
+        res = _.map(this.log[id], log=>{
+          if (log.key) {
+            return log.key
+          }
+          return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
+        })
+        resStr = res.join(',')
+      }
       if (node.type=='return') {
         if (res.length>1) {
           this.code += `_s${id} = [${res}];
@@ -110,9 +126,6 @@ class Runtime {
       let log = {
         key: `_s${link.source}`,
         index: link.index
-      }
-      if (!_.gte(link.index,0)) {
-        log.index = -1
       }
       if (link.filter) {
         let filters = _.map(link.filter.split('.'), n=>{

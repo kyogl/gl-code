@@ -230,7 +230,6 @@ const json = {
             "source": "13",
             "target": "14",
             "condition": true,
-            "filter": "0.length",
             "index": 0
         },
         {
@@ -252,7 +251,12 @@ const json = {
         {
             "source": "17",
             "target": "18",
-            "index": 0
+            "index": "name"
+        },
+        {
+            "source": "12",
+            "target": "18",
+            "index": "waka"
         },
         {
             "source": "18",
