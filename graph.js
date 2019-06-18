@@ -146,11 +146,17 @@ const json = {
             ]
         },
         {
-            "id":"18",
-            "type":"return"
+            "id": "18",
+            "type": "op",
+            "package": "object",
+            "func": "new"
         },
         {
             "id":"19",
+            "type":"return"
+        },
+        {
+            "id":"20",
             "type":"return"
         }
     ],
@@ -249,9 +255,19 @@ const json = {
             "index": 0
         },
         {
-            "source": "15",
+            "source": "18",
             "target": "19",
             "index": 0
+        },
+        {
+            "source": "15",
+            "target": "20",
+            "index": 0
+        },
+        {
+            "source": "1",
+            "target": "20",
+            "index": 1
         }
     ]
 }

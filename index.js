@@ -29,11 +29,6 @@ class Runtime {
     if (node.type=='start') {
       this.code += `_s${id} = data
       `
-    } else if (node.type=='return') {
-      let link = this.getLink(node.targetLinks[0])
-      let parent = this.getNode(link.source)
-      this.code += `return _s${parent.id}
-      `
     } else {
       if (node.data) {
         this.log[id] = _.concat(this.log[id], node.data)
@@ -50,7 +45,17 @@ class Runtime {
         return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
       })
       let resStr = res.join(',')
-      if (node.type=='func') {
+      if (node.type=='return') {
+        if (res.length>1) {
+          this.code += `_s${id} = [${res}];
+          `
+        } else {
+          this.code += `_s${id} = ${res[0]};
+          `
+        }
+        this.code += `return _s${id};
+        `
+      } else if (node.type=='func') {
         let prefix = ''
         if (node.async) {
           prefix = `await `
