@@ -1,8 +1,10 @@
 module.exports = function (id, func, resStr, isAsync) {
-  let prefix = ''
   if (isAsync) {
-    prefix = `await `
+    return `let _s${id}_await = ${func}(${resStr});
+    _s${id} = await _s${id}_await;
+    `
+  } else {
+    return `_s${id} = _s${func}(${resStr});
+    `
   }
-  return `_s${id} = ${prefix}_s${func}(${resStr});
-  `
 }

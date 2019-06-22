@@ -57,10 +57,6 @@ class Runtime {
         this.code += `return _s${id};
         `
       } else if (node.type=='func') {
-        let prefix = ''
-        if (node.async) {
-          prefix = `await `
-        }
         let func = node.package
         if (node.package.indexOf('/')>0) {
           func = node.package.split('/').join('_')
@@ -68,8 +64,14 @@ class Runtime {
         if (node.func) {
           func += `.${node.func}`
         }
-        this.code += `_s${id} = ${prefix}${func}(${resStr});
-        `
+        if (node.async) {
+          this.code += `let _s${id}_await = ${func}(${resStr});
+          _s${id} = await _s${id}_await;
+          `
+        } else {
+          this.code += `_s${id} = ${func}(${resStr});
+          `
+        }
       } else if (node.type=='global') {
         this.code += global[node.package](id, node.func, resStr, node.async)
         if (node.package=='new') {
