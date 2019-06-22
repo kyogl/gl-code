@@ -65,7 +65,7 @@ class Runtime {
           func += `.${node.func}`
         }
         if (node.async) {
-          this.code += `let _s${id}_await = ${func}(${resStr});
+          this.code += `_s${id}_await = ${func}(${resStr});
           _s${id} = await _s${id}_await;
           `
         } else {
@@ -157,7 +157,11 @@ class Runtime {
     })
     //声明变量
     let nodeIds = _.map(this.graph.nodes, node=>{
-      return `_s${node.id}`
+      if (node.async && (node.type=='function' || (node.type=='global' && node.package=='function'))) {
+        return `_s${node.id},_s${node.id}_await`
+      } else {
+        return `_s${node.id}`
+      }
     })
     let nodeStr = nodeIds.join(',')
     this.code += `let ${nodeStr};
