@@ -9,6 +9,12 @@ module.exports = function (id, func, resStr, isAsync) {
     }
     return `_s${id} = ${prefix}function() {
     `
+  } else if (func=='Object') {
+    let str = _.map(resStr, r=>{
+      return `${r.key}: ${r.value}`
+    }).join(',')
+    return `_s${id} = new ${func}({${str}});
+    `
   } else {
     return `_s${id} = new ${func}(${resStr});
     `

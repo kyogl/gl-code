@@ -34,18 +34,33 @@ class Runtime {
         this.log[id] = _.concat(this.log[id], node.data)
       }
       _.remove(this.log[id], log=>{
-        return !_.gte(log.index,0)
+        return log.index<0
       })
       this.log[id] = _.orderBy(this.log[id], ['index'], ['asc'])
       // console.log(this.log[id])
       let res, resStr
-      res = _.map(this.log[id], log=>{
-        if (log.key) {
-          return log.key
-        }
-        return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
-      })
-      resStr = res.join(',')
+      if (node.type=='global' && node.package=='new' && node.func=='object') {
+        resStr = _.map(this.log[id], log=>{
+          let value
+          if (log.key) {
+            value = log.key
+          } else {
+            value = _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
+          }
+          return {
+            key: log.index,
+            value
+          }
+        })
+      } else {
+        res = _.map(this.log[id], log=>{
+          if (log.key) {
+            return log.key
+          }
+          return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
+        })
+        resStr = res.join(',')
+      }
       if (node.type=='return') {
         if (res.length>1) {
           this.code += `_s${id} = [${res}];

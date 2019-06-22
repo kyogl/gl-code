@@ -75,14 +75,14 @@ const json = {
         {
             "source": "4",
             "target": "5",
-            "index": 0,
+            "index": "id",
             "filter": "0._id"
         },
         {
             "source": "4",
             "target": "5",
-            "index": 1,
-            "filter": "title"
+            "index": "name",
+            "filter": "0.title"
         },
         {
             "source": "5",
