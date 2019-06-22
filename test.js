@@ -12,7 +12,7 @@ const lodash_map = require('lodash/map');
           return _s6;
         };
             _s3 = lodash_map(_s2.data.data,_s2_5);
-          _s7 = _s3;
+          _s7 = typeof _s3;
           return _s7;
         };
     module.exports = _func

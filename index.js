@@ -52,6 +52,12 @@ class Runtime {
             value
           }
         })
+      } else if (node.type=='global' && node.package=='sentence') {
+        resStr = _.map(_.filter(this.log[id], log=>{
+          return log.value
+        }), log=>{
+          return log.value
+        })[0]
       } else {
         res = _.map(this.log[id], log=>{
           if (log.key) {

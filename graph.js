@@ -70,6 +70,7 @@ const json = {
         {
             "source":"3",
             "target":"7",
+            "filterPrefix": "typeof",
             "index":0
         },
         {
