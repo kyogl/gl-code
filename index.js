@@ -11,7 +11,7 @@ class Runtime {
     this.graph = graph
     this.tryRun = {}
     this.log = {}
-    this.code = `const func = async function (data) {
+    this.code = `const _func = async function () {
     `;
   }
   getNode (id) {
@@ -157,7 +157,7 @@ class Runtime {
     })
     //声明变量
     let nodeIds = _.map(this.graph.nodes, node=>{
-      if (node.async && (node.type=='function' || (node.type=='global' && node.package=='function'))) {
+      if (node.async && (node.type=='func' || (node.type=='global' && node.package=='function'))) {
         return `_s${node.id},_s${node.id}_await`
       } else {
         return `_s${node.id}`
@@ -168,7 +168,7 @@ class Runtime {
     `
     this.runNode(this.graph.start);
     this.code += `};
-    module.exports = func`
+    module.exports = _func`
     console.log(this.code);
     fs.writeFile('test.js', this.code,  function(err) {
       if (err) {

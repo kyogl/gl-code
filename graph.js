@@ -17,9 +17,9 @@ const json = {
         },
         {
             "id": "2_5",
-            "type": "op",
-            "package": "function",
-            "func": "new",
+            "type": "global",
+            "package": "new",
+            "func": "function",
             "start": "4"
         },
         {
@@ -33,9 +33,9 @@ const json = {
         },
         {
             "id": "5",
-            "type":"op",
-            "package": "object",
-            "func": "new"
+            "type":"global",
+            "package": "new",
+            "func": "object"
         },
         {
             "id": "6",
@@ -49,7 +49,8 @@ const json = {
     "links":[
         {
             "source":"1",
-            "target":"2"
+            "target":"2",
+            "filter": "0"
         },
         {
             "source":"1",
@@ -74,13 +75,13 @@ const json = {
         {
             "source": "4",
             "target": "5",
-            "index": "id",
-            "filter": "_id"
+            "index": 0,
+            "filter": "0._id"
         },
         {
             "source": "4",
             "target": "5",
-            "index": "name",
+            "index": 1,
             "filter": "title"
         },
         {

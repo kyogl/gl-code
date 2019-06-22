@@ -4,7 +4,7 @@ module.exports = function (id, func, resStr, isAsync) {
     _s${id} = await _s${id}_await;
     `
   } else {
-    return `_s${id} = _s${func}(${resStr});
+    return `_s${id} = ${func}(${resStr});
     `
   }
 }
