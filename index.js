@@ -71,7 +71,7 @@ class Runtime {
         this.code += `_s${id} = ${prefix}${func}(${resStr});
         `
       } else if (node.type=='global') {
-        this.code += global[node.package](id, node.func, resStr)
+        this.code += global[node.package](id, node.func, resStr, node.async)
         if (node.package=='new') {
           if (node.func=='function') {
             this.runNode(node.start)

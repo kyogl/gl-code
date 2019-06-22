@@ -6,4 +6,5 @@ module.exports = {
   "comparison": require('./comparison'),
   "arithmetic": require('./arithmetic'),
   "loop": require('./loop'),
+  "function": require('./function'),
 }
