@@ -3,7 +3,7 @@ const _ = require('lodash')
 const getGraph = require('./utils/getGraph')
 const build = require('./utils/build')
 const json = require('./graph')
-const op = require('./op')
+const global = require('./global')
 const graph = getGraph(json)
 
 class Runtime {
@@ -27,40 +27,25 @@ class Runtime {
   buildNode (id) {
     let node = this.getNode(id)
     if (node.type=='start') {
-      this.code += `_s${id} = data
+      this.code += `_s${id} = arguments
       `
     } else {
       if (node.data) {
         this.log[id] = _.concat(this.log[id], node.data)
       }
       _.remove(this.log[id], log=>{
-        return log.index<0
+        return !_.gte(log.index,0)
       })
       this.log[id] = _.orderBy(this.log[id], ['index'], ['asc'])
       // console.log(this.log[id])
       let res, resStr
-      if (node.type=='op' && node.package=='object') {
-        resStr = _.map(this.log[id], log=>{
-          let value
-          if (log.key) {
-            value = log.key
-          } else {
-            value = _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
-          }
-          return {
-            key: log.index,
-            value
-          }
-        })
-      } else {
-        res = _.map(this.log[id], log=>{
-          if (log.key) {
-            return log.key
-          }
-          return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
-        })
-        resStr = res.join(',')
-      }
+      res = _.map(this.log[id], log=>{
+        if (log.key) {
+          return log.key
+        }
+        return _.isNumber(log.value) ? log.value : JSON.stringify(log.value)
+      })
+      resStr = res.join(',')
       if (node.type=='return') {
         if (res.length>1) {
           this.code += `_s${id} = [${res}];
@@ -85,10 +70,10 @@ class Runtime {
         }
         this.code += `_s${id} = ${prefix}${func}(${resStr});
         `
-      } else if (node.type=='op') {
-        this.code += op[node.package](id, node.func, resStr)
-        if (node.package=='function') {
-          if (node.func=='new') {
+      } else if (node.type=='global') {
+        this.code += global[node.package](id, node.func, resStr)
+        if (node.package=='new') {
+          if (node.func=='function') {
             this.runNode(node.start)
             this.code += `};
             `
@@ -149,7 +134,7 @@ class Runtime {
     if (!this.tryRun[id]) {
       this.tryRun[id] = _.after(node.targetLinks.length, ()=>{
         this.buildNode(id)
-        if (node.type=='op' && node.package=='condition') {
+        if (node.type=='global' && node.package=='condition') {
           return
         }
         this.runNext(id)
