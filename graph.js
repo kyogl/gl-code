@@ -43,7 +43,13 @@ const json = {
         },
         {
             "id": "7",
-            "type":"return"
+            "type":"global",
+            "package": "function",
+            "func": "new Array"
+        }, 
+        {
+            "id": "8",
+            "type": "return"
         }
     ],
     "links":[
@@ -70,7 +76,7 @@ const json = {
         {
             "source":"3",
             "target":"7",
-            "filterPrefix": "typeof",
+            "filter": "length",
             "index":0
         },
         {
@@ -88,6 +94,11 @@ const json = {
         {
             "source": "5",
             "target": "6",
+            "index": 0
+        },
+        {
+            "source": "7",
+            "target": "8",
             "index": 0
         }
     ]
